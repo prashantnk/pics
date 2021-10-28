@@ -1,19 +1,23 @@
 import React from "react";
 
 class SearchBar extends React.Component {
-    // constructor() {
-    //     super();
-    //     this.onSubmitForm = this.onSubmitForm.bind(this);
-    // }
+    constructor(props) {
+        super(props);
+        this.onSubmitForm = this.onSubmitForm.bind(this);
+        this.formRef = React.createRef();
+    }
     state = { term: '' };
     onSubmitForm = (event) => {
         event.preventDefault();
         this.props.onFormSubmit(this.state.term);
     }
+    componentDidMount() {
+        this.formRef.current.addEventListener('submit', this.onSubmitForm);
+    }
     render() {
         return (
             <div className="ui segment">
-                <form className="ui form" onSubmit={this.onSubmitForm}>
+                <form className="ui form" /*onSubmit={this.onSubmitForm}*/ ref={this.formRef}>
                     <div className="field">
                         <label htmlFor="searchInput" > Image Search </label>
                         <input type="text" className="ui input" id="searchInput"
