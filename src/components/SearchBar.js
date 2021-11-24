@@ -12,7 +12,10 @@ class SearchBar extends React.Component {
         this.props.onFormSubmit(this.state.term);
     }
     componentDidMount() {
-        this.formRef.current.addEventListener('submit', this.onSubmitForm);
+        // this.formRef.current.addEventListener('submit', this.onSubmitForm);
+        // this.formRef.current.addEventListener('submit', this.onSubmitForm);
+        // #root > h1 > div.ui.segment > form
+        document.querySelector("#root > h1 > div.ui.segment > form").addEventListener('submit', this.onSubmitForm);
     }
     render() {
         return (
